@@ -3,9 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
-  --primary: #000000; 
+  --primary: #cc0000; /* Deep professional red */
   --primary-foreground: #ffffff;
-  --accent: #222222; 
+  --accent: #111111; 
   --accent-foreground: #ffffff;
   --muted: #f4f4f4; 
   --muted-foreground: #666666; 
@@ -34,10 +34,10 @@ body {
 /* Tier 1 Consulting Strict Utilities */
 @layer utilities {
   .sharp-box {
-    @apply bg-white border border-black rounded-none shadow-none;
+    @apply bg-white border border-neutral-200 rounded-none shadow-none;
   }
   .sharp-btn {
-    @apply bg-black text-white px-8 py-4 font-bold rounded-none hover:bg-neutral-800 transition-colors uppercase tracking-widest text-sm flex items-center;
+    @apply bg-primary text-white px-8 py-4 font-bold rounded-none hover:bg-red-800 transition-colors uppercase tracking-widest text-sm flex items-center;
   }
   .sharp-btn-outline {
     @apply bg-transparent border border-black text-black px-8 py-4 font-bold rounded-none hover:bg-black hover:text-white transition-colors uppercase tracking-widest text-sm flex items-center;
