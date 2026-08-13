@@ -1,3 +1,129 @@
+export const IBM_STYLE_CAPABILITIES = [
+  {
+    category: "Data & AI",
+    slug: "data-and-ai",
+    items: [
+      { title: "Artificial Intelligence", slug: "artificial-intelligence" },
+      { title: "Data transformation", slug: "data-transformation" },
+      { title: "AI governance", slug: "ai-governance" },
+      { title: "Predictive analytics", slug: "predictive-analytics" }
+    ]
+  },
+  {
+    category: "Business transformation",
+    slug: "business-transformation",
+    items: [
+      { title: "Business strategy", slug: "business-strategy" },
+      { title: "HR & talent transformation", slug: "hr-talent-transformation" },
+      { title: "Supply chain", slug: "supply-chain" },
+      { title: "Customer experience", slug: "customer-experience" },
+      { title: "Sustainability", slug: "sustainability" },
+      { title: "Finance consulting", slug: "finance-consulting" }
+    ]
+  },
+  {
+    category: "Business operations",
+    slug: "business-operations",
+    items: [
+      { title: "Customer service operations", slug: "customer-service-operations" },
+      { title: "HR operations", slug: "hr-operations" },
+      { title: "Finance operations", slug: "finance-operations" },
+      { title: "Procurement operations", slug: "procurement-operations" }
+    ]
+  },
+  {
+    category: "Hybrid cloud",
+    slug: "hybrid-cloud",
+    items: [
+      { title: "Cloud & technology strategy", slug: "cloud-technology-strategy" },
+      { title: "Application modernization", slug: "application-modernization" },
+      { title: "Product engineering", slug: "product-engineering" },
+      { title: "Managed cloud services", slug: "managed-cloud-services" }
+    ]
+  }
+];
+
+export const SUB_SERVICE_DETAILS: Record<string, any> = {
+  "artificial-intelligence": {
+    title: "Artificial Intelligence Services",
+    heroImage: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2000&auto=format&fit=crop",
+    description: "Scale secure, generative AI across your core enterprise operations to unlock unprecedented productivity and growth.",
+    theDifference: [
+      { title: "AI Leadership", desc: "Unlocking growth by doing AI right." },
+      { title: "Consulting Advantage", desc: "First-of-its-kind AI-powered platform to supercharge delivery." },
+      { title: "Enterprise Advantage", desc: "Build and operate your enterprise AI platform for scale." }
+    ],
+    challenges: [
+      "Data silos preventing unified AI context.",
+      "Lack of governance leading to shadow AI risks.",
+      "Inability to scale POCs to enterprise-wide adoption."
+    ],
+    solutions: [
+      "Enterprise AI Architecture & Foundation",
+      "Generative AI Copilot Integration",
+      "Agentic Workflow Automation"
+    ],
+    blogs: [
+      { title: "Orchestrating AI at Scale", slug: "orchestrating-ai" },
+      { title: "The Generative Enterprise", slug: "generative-enterprise" },
+      { title: "Securing AI Workflows", slug: "securing-ai" }
+    ]
+  },
+  "business-strategy": {
+    title: "Business Strategy Consulting",
+    heroImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop",
+    description: "Redefine your competitive advantage. We partner with C-suite leaders to navigate disruption and architect resilient operating models.",
+    theDifference: [
+      { title: "Data-Driven Strategy", desc: "Combining market intelligence with internal analytics." },
+      { title: "Agile Execution", desc: "Moving from slide decks to rapid prototyping." },
+      { title: "Industry Expertise", desc: "Deep domain knowledge across 20+ sectors." }
+    ],
+    challenges: [
+      "Rapid market disruption by digital natives.",
+      "Inefficient legacy operating models.",
+      "Misalignment between IT and business goals."
+    ],
+    solutions: [
+      "Target Operating Model Design",
+      "Digital-First Strategy",
+      "M&A Technology Due Diligence"
+    ],
+    blogs: [
+      { title: "The Agile Boardroom", slug: "agile-boardroom" },
+      { title: "Navigating Market Disruption", slug: "market-disruption" },
+      { title: "Reinventing the Operating Model", slug: "reinventing-operating-model" }
+    ]
+  }
+};
+
+// Keeping the older structures for fallback on other pages
+export const CAPABILITIES = [
+  {
+    slug: "data-and-ai",
+    title: "Data & AI",
+    description: "Unlock new growth with generative AI and intelligent automation.",
+    icon: "BrainCircuit",
+    subServices: [
+      { title: "Artificial Intelligence", slug: "artificial-intelligence" },
+      { title: "Data transformation", slug: "data-transformation" },
+      { title: "AI governance", slug: "ai-governance" }
+    ],
+    blogs: []
+  },
+  {
+    slug: "business-transformation",
+    title: "Business Transformation",
+    description: "End-to-end business modernization.",
+    icon: "Rocket",
+    subServices: [
+      { title: "Business strategy", slug: "business-strategy" },
+      { title: "Supply chain", slug: "supply-chain" },
+      { title: "Customer experience", slug: "customer-experience" }
+    ],
+    blogs: []
+  }
+];
+
 export const INDUSTRIES = [
   {
     slug: "manufacturing",
@@ -5,125 +131,10 @@ export const INDUSTRIES = [
     description: "Smart manufacturing and Industry 4.0 transformation.",
     icon: "Factory",
     heroImage: "/images/manufacturing-hero.jpg",
-    challenges: ["Supply chain disruption", "Legacy systems integration", "Labor and skills shortages", "Margin compression"],
-    solutions: ["Smart Factory Automation", "Predictive Maintenance", "Supply Chain Analytics", "IoT Integration"],
+    challenges: ["Supply chain disruption"],
+    solutions: ["Smart Factory Automation"],
     blogs: [
-      { title: "The Future of Smart Manufacturing", slug: "future-of-smart-manufacturing" },
-      { title: "Overcoming Supply Chain Disruptions", slug: "overcoming-supply-chain-disruptions" },
-      { title: "AI in Predictive Maintenance", slug: "ai-in-predictive-maintenance" },
+      { title: "The Future of Smart Manufacturing", slug: "future-of-smart-manufacturing" }
     ]
-  },
-  {
-    slug: "healthcare",
-    title: "Healthcare & Life Sciences",
-    description: "Digital health transformation and patient-centric care.",
-    icon: "HeartPulse",
-    heroImage: "/images/healthcare-hero.jpg",
-    challenges: ["Data privacy and HIPAA compliance", "Interoperability between systems", "Rising operational costs", "Provider burnout"],
-    solutions: ["Digital Patient Experience", "Health Data Analytics", "Telemedicine Platforms", "EHR Modernization"],
-    blogs: [
-      { title: "Digital Transformation in Healthcare", slug: "digital-transformation-in-healthcare" },
-      { title: "Securing Patient Data in the Cloud", slug: "securing-patient-data-in-the-cloud" },
-      { title: "The Rise of Telemedicine", slug: "the-rise-of-telemedicine" },
-    ]
-  },
-  {
-    slug: "financial-services",
-    title: "Financial Services",
-    description: "Modernizing banking, insurance, and wealth management.",
-    icon: "Landmark",
-    heroImage: "/images/financial-services-hero.jpg",
-    challenges: ["Strict regulatory compliance", "Disruptive Fintech competition", "Legacy system technical debt", "Cybersecurity threats"],
-    solutions: ["Digital Core Banking", "Risk Management Analytics", "Automated Compliance", "Open Banking APIs"],
-    blogs: [
-      { title: "Modernizing Legacy Banking Systems", slug: "modernizing-legacy-banking-systems" },
-      { title: "Navigating Regulatory Compliance", slug: "navigating-regulatory-compliance" },
-      { title: "The Threat of Fintech Competition", slug: "the-threat-of-fintech-competition" },
-    ]
-  }
-];
-
-export const CAPABILITIES = [
-  {
-    slug: "ai-intelligent-enterprise",
-    title: "AI & Intelligent Enterprise",
-    description: "Unlock new growth with generative AI and intelligent automation. We help you scale AI securely across your organization.",
-    icon: "BrainCircuit",
-    subServices: [
-      { title: "AI Strategy & Roadmap", slug: "ai-strategy" },
-      { title: "Generative AI Implementation", slug: "generative-ai" },
-      { title: "Agentic AI Frameworks", slug: "agentic-ai" },
-      { title: "AI Governance & Ethics", slug: "ai-governance" }
-    ],
-    blogs: [
-      { title: "Building an AI Center of Excellence", slug: "building-ai-coe" },
-      { title: "Generative AI in the Enterprise", slug: "generative-ai-enterprise" },
-      { title: "The Future of Agentic AI", slug: "future-of-agentic-ai" },
-    ]
-  },
-  {
-    slug: "digital-transformation",
-    title: "Digital Transformation",
-    description: "End-to-end business modernization. We redesign your operating model for the digital-first economy.",
-    icon: "Rocket",
-    subServices: [
-      { title: "Digital Operating Model", slug: "digital-operating-model" },
-      { title: "Platform Modernization", slug: "platform-modernization" },
-      { title: "Enterprise Applications Architecture", slug: "enterprise-applications" },
-      { title: "Customer Journey Digitization", slug: "customer-journey" }
-    ],
-    blogs: [
-      { title: "A Guide to Digital Strategy", slug: "guide-to-digital-strategy" },
-      { title: "Modernizing Enterprise Platforms", slug: "modernizing-enterprise-platforms" },
-      { title: "The ROI of Digital Transformation", slug: "roi-of-digital-transformation" },
-    ]
-  }
-];
-
-export const CASE_STUDIES = [
-  {
-    slug: "global-retailer-supply-chain",
-    title: "Transforming a Global Retailer's Supply Chain",
-    client: "Fortune 500 Retailer",
-    industry: "Retail",
-    capability: "Digital Transformation",
-    summary: "How we reduced supply chain costs by 22% through predictive analytics and intelligent automation.",
-    challenge: "The client faced unprecedented supply chain disruptions, bloated inventory costs, and an inability to forecast demand accurately across 2,000+ global stores.",
-    solution: "We implemented an end-to-end AI-driven supply chain analytics platform, integrated with their legacy ERP system, providing real-time visibility and predictive demand forecasting.",
-    results: [
-      "22% reduction in overall supply chain costs.",
-      "15% increase in inventory turnover.",
-      "$120M in working capital freed within 12 months."
-    ]
-  },
-  {
-    slug: "healthcare-provider-patient-experience",
-    title: "Revolutionizing Patient Experience",
-    client: "National Healthcare Network",
-    industry: "Healthcare",
-    capability: "AI & Intelligent Enterprise",
-    summary: "Leveraging generative AI to streamline patient onboarding and reduce administrative burden.",
-    challenge: "Patient onboarding was manual, paper-based, and prone to errors, leading to poor patient satisfaction scores and high administrative overhead.",
-    solution: "Deployed a secure, HIPAA-compliant intelligent onboarding assistant using Agentic AI to pre-process patient intake forms and answer routine queries.",
-    results: [
-      "40% reduction in patient wait times.",
-      "65% decrease in manual data entry errors.",
-      "Patient satisfaction scores improved from 72 to 94."
-    ]
-  }
-];
-
-export const SOLUTIONS = [
-  {
-    slug: "ai-powered-enterprise",
-    title: "AI-Powered Enterprise",
-    description: "A comprehensive framework to embed AI across your operations, supply chain, and customer experience.",
-    features: ["Pre-built AI Models", "Enterprise Data Fabric", "Secure Cloud Deployment"]
-  },
-  {
-    slug: "intelligent-automation",
-    title: "Intelligent Automation",
-    description: "Scale hyperautomation to reduce manual work and increase operational resilience.",
-    features: ["RPA Integration", "Process Mining", "Cognitive Document Processing"]
   }
 ];
