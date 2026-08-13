@@ -17,7 +17,10 @@ import {
   Lock, 
   HelpCircle,
   BarChart3,
-  Globe
+  Globe,
+  Award,
+  ChevronDown,
+  BookOpen
 } from "lucide-react";
 
 interface PageProps {
@@ -28,6 +31,7 @@ export default function SubServicePage({ params }: PageProps) {
   const { slug, subSlug } = use(params);
   const [activeIndustryTab, setActiveIndustryTab] = useState(0);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(0);
+  const [expandedArticle, setExpandedArticle] = useState<number | null>(0);
 
   // Find pillar category
   const pillar = ENTERPRISE_PILLARS.find(p => p.slug === slug);
@@ -38,20 +42,20 @@ export default function SubServicePage({ params }: PageProps) {
   }
 
   return (
-    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28">
+    <div className="bg-slate-950 text-slate-100 min-h-screen pt-36 lg:pt-44">
       
-      {/* BREADCRUMB & HERO */}
-      <section className="relative pt-12 pb-20 border-b border-slate-800/80 overflow-hidden">
+      {/* BREADCRUMB & HERO SECTION */}
+      <section className="relative pb-20 border-b border-slate-800/80 overflow-hidden">
         <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
         <div className="ambient-glow-purple top-[50px] right-[-100px]"></div>
 
         <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          {/* Breadcrumb */}
-          <div className="text-xs font-semibold text-slate-400 mb-6 flex items-center space-x-2">
+          {/* Breadcrumb Navigation */}
+          <div className="text-xs font-semibold text-slate-400 mb-8 flex items-center space-x-2">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
-            <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+            <Link href="/services" className="hover:text-white transition-colors">Capabilities</Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
             <Link href={`/services/${slug}`} className="hover:text-indigo-400 transition-colors">{pillar.category}</Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
@@ -61,7 +65,7 @@ export default function SubServicePage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-8 space-y-6">
-              <span className="badge-tag">{pillar.category} &bull; Practice Area</span>
+              <span className="badge-tag">{pillar.category} &bull; Practice Domain</span>
               
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
                 {detail.title}
@@ -80,7 +84,7 @@ export default function SubServicePage({ params }: PageProps) {
                   href="/contact" 
                   className="btn-primary-gradient px-8 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center"
                 >
-                  <span>Schedule Practice Briefing</span>
+                  <span>Schedule Practice Consultation</span>
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
                 
@@ -88,12 +92,12 @@ export default function SubServicePage({ params }: PageProps) {
                   href="/case-studies" 
                   className="btn-secondary-dark px-8 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center"
                 >
-                  <span>Explore Practice Case Studies</span>
+                  <span>View Validated Case Studies</span>
                 </Link>
               </div>
             </div>
 
-            {/* Key Practice Stats Panel */}
+            {/* Key Practice Impact Stats */}
             <div className="lg:col-span-4">
               <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
                 <div className="text-xs font-bold text-indigo-400 uppercase tracking-wider pb-2 border-b border-slate-800">
@@ -110,6 +114,33 @@ export default function SubServicePage({ params }: PageProps) {
               </div>
             </div>
 
+          </div>
+
+        </div>
+      </section>
+
+      {/* WHAT WE HAVE DONE / PROVEN TRACK RECORD */}
+      <section className="py-20 bg-slate-900/40 border-b border-slate-800/80">
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-2">
+            <span className="badge-tag">Proven Accomplishments</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              What We Have Delivered in {detail.title}
+            </h2>
+            <p className="text-sm text-slate-400">
+              Verified business outcomes achieved for Global 2000 clients across complex operating environments.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {detail.whatWeHaveDone.map((item: any, idx: number) => (
+              <div key={idx} className="glass-card glass-card-hover rounded-2xl p-8 border border-slate-800 space-y-4">
+                <div className="text-4xl font-black text-white gradient-text-gold">{item.stat}</div>
+                <h3 className="text-lg font-bold text-white leading-snug">{item.headline}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">{item.detail}</p>
+              </div>
+            ))}
           </div>
 
         </div>
@@ -169,7 +200,34 @@ export default function SubServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* 4 CAPABILITY FRAMEWORK PILLARS */}
+      {/* HOW WE EXECUTE & DELIVER (3-PHASE PIPELINE) */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800/80">
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-2">
+            <span className="badge-tag">Execution Roadmap</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              How We Execute & Deliver {detail.title}
+            </h2>
+            <p className="text-sm text-slate-400">
+              Our structured 3-phase delivery pipeline ensures zero disruption to live operations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {detail.deliveryExecution.map((step: any, idx: number) => (
+              <div key={idx} className="glass-card glass-card-hover rounded-2xl p-8 border border-slate-800 space-y-4">
+                <div className="badge-tag !py-0.5 !px-2.5">Step 0{idx + 1}</div>
+                <h3 className="text-lg font-bold text-white">{step.phase}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4 CORE CAPABILITY MODULES */}
       <section className="py-20 bg-slate-900/40 border-b border-slate-800/80">
         <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -264,6 +322,54 @@ export default function SubServicePage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {/* 3 OPEN RESEARCH PAPERS (350-450 WORDS EACH) EMBEDDED DIRECTLY IN EVERY SERVICE PAGE */}
+      <section className="py-20 bg-slate-950 border-b border-slate-800/80">
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="text-center max-w-3xl mx-auto space-y-2">
+            <span className="badge-tag">Practice Thought Leadership</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              3 Open Research Papers on {detail.title} (350-450 Words)
+            </h2>
+            <p className="text-sm text-slate-400">
+              Read our full benchmark papers directly below. No forms or paywalls.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {detail.serviceResearchArticles.map((article: any, idx: number) => (
+              <div 
+                key={idx}
+                className="glass-card glass-card-hover rounded-3xl p-8 border border-slate-800 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between text-xs text-slate-400 mb-4 pb-3 border-b border-slate-800">
+                    <span className="badge-tag">Research Paper</span>
+                    <span>{article.wordCount}</span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-white mb-2">{article.title}</h3>
+                  <div className="text-xs font-semibold text-indigo-400 mb-4">By {article.author} &bull; {article.date}</div>
+
+                  {/* Expandable / Open Article Content Reader */}
+                  <div className="bg-slate-900/80 p-5 rounded-2xl border border-slate-800/80 text-xs text-slate-300 space-y-3 max-h-80 overflow-y-auto">
+                    <div className="whitespace-pre-wrap leading-relaxed">
+                      {article.content}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-800/80 mt-6 flex items-center justify-between text-xs text-slate-400">
+                  <span className="flex items-center"><BookOpen className="w-3.5 h-3.5 mr-1 text-indigo-400" /> Full Text Available</span>
+                  <Link href="/contact" className="text-indigo-400 font-semibold hover:underline">Discuss Paper &rarr;</Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
 
       {/* FEATURED CASE STUDY */}
       <section className="py-20 bg-slate-900/60 border-b border-slate-800/80">

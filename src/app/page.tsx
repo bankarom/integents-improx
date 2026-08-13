@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   ArrowRight, 
   Sparkles, 
@@ -19,14 +19,19 @@ import {
   ChevronRight,
   CheckCircle2,
   Lock,
-  Globe
+  Globe,
+  BookOpen,
+  Calendar,
+  Clock,
+  ChevronDown
 } from "lucide-react";
 import { 
   ENTERPRISE_PILLARS, 
   GLOBAL_INDUSTRIES, 
   CLIENT_LOGOS, 
   FEATURED_INSIGHTS, 
-  FEATURED_CASE_STUDIES 
+  FEATURED_CASE_STUDIES,
+  IMPROX_DELIVERY_ENGINE
 } from "@/lib/data";
 
 export default function Home() {
@@ -34,6 +39,9 @@ export default function Home() {
   const [calcIndustry, setCalcIndustry] = useState("Financial Services & Banking");
   const [calcScale, setCalcScale] = useState("$2B - $10B Enterprise");
   const [calcGoal, setCalcGoal] = useState("Agentic AI & Workflow Automation");
+
+  // Research Article Modal / Expand Reader State
+  const [activeArticleIndex, setActiveArticleIndex] = useState<number | null>(null);
 
   // Calculation output generator
   const getCalculatedImpact = () => {
@@ -59,10 +67,10 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-slate-950 text-slate-100 min-h-screen pt-24">
+    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28 lg:pt-36">
       
       {/* SECTION 1: HERO EXPERIENCE */}
-      <section className="relative pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden border-b border-slate-800/80">
+      <section className="relative pt-8 pb-20 lg:pt-16 lg:pb-28 overflow-hidden border-b border-slate-800/80">
         
         {/* Background Ambient Glows */}
         <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
@@ -278,9 +286,121 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 4: INTERACTIVE ENTERPRISE ROI & TRANSFORMATION CALCULATOR */}
+      {/* SECTION 4: WHY IMPROX INTEGENTS (ECOSYSTEM ADVANTAGE - MOVED UP AS REQUESTED!) */}
+      <section className="py-24 bg-slate-950 border-b border-slate-800/80 relative">
+        <div className="ambient-glow-purple top-0 left-0"></div>
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <div className="lg:col-span-5 space-y-6">
+              <span className="badge-tag">The Core Advantage</span>
+              <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                Why Fortune 500 Leaders Choose Improx Integents
+              </h2>
+              <p className="text-slate-300 text-base leading-relaxed">
+                Traditional consulting firms deliver static slides and exit. Pure engineering firms lack strategic C-suite perspective. Improx Integents bridges this gap with zero-legacy methodologies and full execution accountability.
+              </p>
+              
+              <div className="pt-2">
+                <Link 
+                  href="/about" 
+                  className="btn-primary-gradient px-8 py-3.5 rounded-xl font-bold text-sm inline-flex items-center"
+                >
+                  <span>Learn About Our Firm</span>
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              
+              <div className="glass-card p-6 rounded-2xl border border-slate-800">
+                <div className="w-12 h-12 rounded-xl bg-indigo-950 text-indigo-400 flex items-center justify-center mb-4 border border-indigo-800/40">
+                  <BrainCircuit className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Agentic AI Control Planes</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  We build production multi-agent systems with built-in governance, security rails, and ROI tracking.
+                </p>
+              </div>
+
+              <div className="glass-card p-6 rounded-2xl border border-slate-800">
+                <div className="w-12 h-12 rounded-xl bg-blue-950 text-blue-400 flex items-center justify-center mb-4 border border-blue-800/40">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Zero-Legacy Delivery</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Rapid 60-90 day pilot deployments replacing multi-year stagnant transformation programs.
+                </p>
+              </div>
+
+              <div className="glass-card p-6 rounded-2xl border border-slate-800">
+                <div className="w-12 h-12 rounded-xl bg-purple-950 text-purple-400 flex items-center justify-center mb-4 border border-purple-800/40">
+                  <Users className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Senior Partner Ownership</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Every engagement is led directly by veteran Managing Partners with deep industry domain expertise.
+                </p>
+              </div>
+
+              <div className="glass-card p-6 rounded-2xl border border-slate-800">
+                <div className="w-12 h-12 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center mb-4 border border-cyan-800/40">
+                  <Lock className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">100% IP Ownership</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  All algorithms, custom code, workflows, and architectures belong entirely to your enterprise.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* SECTION 5: HOW WE DELIVER (THE IMPROX DELIVERY ENGINE METHODOLOGY) */}
+      <section className="py-24 bg-slate-900/40 border-b border-slate-800/80 relative">
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="badge-tag">Execution Methodology</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+              The Improx Delivery Engine
+            </h2>
+            <p className="text-base sm:text-lg text-slate-400">
+              How we execute global transformation projects: From initial C-suite value audit to scalable production rollout in 90 days.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {IMPROX_DELIVERY_ENGINE.map((stage) => (
+              <div key={stage.step} className="glass-card glass-card-hover rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+                    <span className="text-3xl font-extrabold text-indigo-400">{stage.step}</span>
+                    <span className="badge-tag !py-0.5 !px-2 !text-[10px]">{stage.duration}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">{stage.phase}</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">{stage.desc}</p>
+                </div>
+                <div className="pt-4 border-t border-slate-800/60 mt-6 text-xs font-semibold text-emerald-400 flex items-center">
+                  <CheckCircle2 className="w-3.5 h-3.5 mr-1.5" />
+                  <span>Structured Deliverable</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* SECTION 6: INTERACTIVE ROI & TRANSFORMATION CALCULATOR (MOVED DOWN AS REQUESTED!) */}
       <section className="py-24 bg-slate-900/60 border-b border-slate-800/80 relative">
-        <div className="ambient-glow-purple top-0 right-0"></div>
+        <div className="ambient-glow-blue top-0 right-0"></div>
         <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 shadow-2xl">
@@ -406,7 +526,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 5: FEATURED CLIENT CASE STUDIES */}
+      {/* SECTION 7: FEATURED CLIENT CASE STUDIES */}
       <section className="py-24 bg-slate-950 border-b border-slate-800/80">
         <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -474,147 +594,85 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 6: WHY IMPROX INTEGENTS */}
-      <section className="py-24 bg-slate-950 border-b border-slate-800/80 relative">
-        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
-            <div className="lg:col-span-5 space-y-6">
-              <span className="badge-tag">The Ecosystem Advantage</span>
-              <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                Why Fortune 500 Leaders Choose Improx Integents
-              </h2>
-              <p className="text-slate-300 text-base leading-relaxed">
-                Traditional consulting firms deliver slides and exit. Pure engineering firms lack strategic C-suite perspective. Improx Integents bridges this gap with zero-legacy methodologies and full accountability.
-              </p>
-              
-              <div className="pt-2">
-                <Link 
-                  href="/about" 
-                  className="btn-primary-gradient px-8 py-3.5 rounded-xl font-bold text-sm inline-flex items-center"
-                >
-                  <span>Learn About Our Firm</span>
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              
-              <div className="glass-card p-6 rounded-2xl border border-slate-800">
-                <div className="w-12 h-12 rounded-xl bg-indigo-950 text-indigo-400 flex items-center justify-center mb-4 border border-indigo-800/40">
-                  <BrainCircuit className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Agentic AI Control Planes</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  We build production multi-agent systems with built-in governance, security rails, and ROI tracking.
-                </p>
-              </div>
-
-              <div className="glass-card p-6 rounded-2xl border border-slate-800">
-                <div className="w-12 h-12 rounded-xl bg-blue-950 text-blue-400 flex items-center justify-center mb-4 border border-blue-800/40">
-                  <Zap className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Zero-Legacy Delivery</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  Rapid 60-90 day pilot deployments replacing multi-year stagnant transformation programs.
-                </p>
-              </div>
-
-              <div className="glass-card p-6 rounded-2xl border border-slate-800">
-                <div className="w-12 h-12 rounded-xl bg-purple-950 text-purple-400 flex items-center justify-center mb-4 border border-purple-800/40">
-                  <Users className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Senior Partner Ownership</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  Every engagement is led directly by veteran Managing Partners with deep industry domain expertise.
-                </p>
-              </div>
-
-              <div className="glass-card p-6 rounded-2xl border border-slate-800">
-                <div className="w-12 h-12 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center mb-4 border border-cyan-800/40">
-                  <Lock className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">100% IP Ownership</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  All algorithms, custom code, workflows, and architectures belong entirely to your enterprise.
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* SECTION 7: RESEARCH & INSIGHTS SPOTLIGHT */}
+      {/* SECTION 8: RESEARCH ARTICLES (3 FULL 350-450 WORD ARTICLES WITH EXPANDABLE READER) */}
       <section className="py-24 bg-slate-950 border-b border-slate-800/80">
         <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <span className="badge-tag">Thought Leadership</span>
+              <span className="badge-tag">Open Research Papers (350-450 Words)</span>
               <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mt-2">
-                Executive Insights & Market Research
+                Featured Strategy & Technical Benchmarks
               </h2>
             </div>
             <Link 
               href="/insights" 
               className="text-indigo-400 hover:text-indigo-300 font-bold flex items-center text-sm"
             >
-              <span>Explore All Insights</span>
+              <span>Explore Research Archive</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {FEATURED_INSIGHTS.map((insight) => (
-              <Link 
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {FEATURED_INSIGHTS.map((insight, idx) => (
+              <div 
                 key={insight.slug}
-                href={`/insights/${insight.slug}`}
-                className="glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col justify-between border border-slate-800 group"
+                className="glass-card glass-card-hover rounded-3xl overflow-hidden flex flex-col justify-between border border-slate-800 group p-8"
               >
                 <div>
-                  <div className="h-52 relative overflow-hidden bg-slate-900">
-                    <img 
-                      src={insight.image} 
-                      alt={insight.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-indigo-400 border border-slate-800">
-                      {insight.category}
-                    </div>
+                  <div className="flex items-center justify-between text-xs text-slate-400 mb-4 pb-4 border-b border-slate-800">
+                    <span className="badge-tag">{insight.category}</span>
+                    <span>{insight.readTime}</span>
                   </div>
 
-                  <div className="p-6 space-y-3">
-                    <div className="text-xs text-slate-400 flex items-center space-x-3">
-                      <span>{insight.date}</span>
-                      <span>&bull;</span>
-                      <span>{insight.readTime}</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors line-clamp-2">
-                      {insight.title}
-                    </h3>
-                    <p className="text-xs text-slate-400 leading-relaxed line-clamp-3">
-                      {insight.summary}
-                    </p>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors">
+                    {insight.title}
+                  </h3>
+
+                  <div className="text-xs font-semibold text-indigo-400 mb-4">
+                    By {insight.author}
                   </div>
+
+                  <p className="text-xs text-slate-300 leading-relaxed mb-6">
+                    {insight.summary}
+                  </p>
+
+                  {/* Expandable Article Text Reader */}
+                  {activeArticleIndex === idx && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 text-xs text-slate-300 space-y-3 mb-6 max-h-96 overflow-y-auto"
+                    >
+                      <div className="font-bold text-indigo-300 pb-2 border-b border-slate-800">
+                        Full Research Paper ({insight.readTime})
+                      </div>
+                      <div className="whitespace-pre-wrap leading-relaxed">
+                        {insight.fullContent}
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
 
-                <div className="p-6 pt-0 text-xs font-bold text-indigo-400 flex items-center justify-between">
-                  <span>Read Strategy Report</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+                  <button 
+                    onClick={() => setActiveArticleIndex(activeArticleIndex === idx ? null : idx)}
+                    className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center"
+                  >
+                    <span>{activeArticleIndex === idx ? "Close Paper Reader" : "Read Full Research Paper (400 Words)"}</span>
+                    <ChevronDown className={`w-3.5 h-3.5 ml-1 transition-transform ${activeArticleIndex === idx ? "rotate-180" : ""}`} />
+                  </button>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
         </div>
       </section>
 
-      {/* SECTION 8: C-SUITE EXECUTIVE BRIEFING CTA */}
+      {/* SECTION 9: C-SUITE EXECUTIVE BRIEFING CTA */}
       <section className="py-24 bg-slate-950">
         <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-10 lg:p-20 border border-indigo-500/30 relative overflow-hidden shadow-2xl">
