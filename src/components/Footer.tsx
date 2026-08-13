@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Linkedin, Twitter, ArrowRight, Mail } from "lucide-react";
+import { Globe, MessageCircle, ArrowRight, Mail } from "lucide-react";
 import { INDUSTRIES, CAPABILITIES } from "@/lib/data";
 
 export default function Footer() {
@@ -17,10 +17,10 @@ export default function Footer() {
             </p>
             <div className="flex items-center space-x-4">
               <a href="#" className="text-zinc-400 hover:text-white transition-colors bg-zinc-900 p-2 rounded-full border border-zinc-800 hover:border-zinc-700">
-                <Linkedin className="w-5 h-5" />
+                <Globe className="w-5 h-5" />
               </a>
               <a href="#" className="text-zinc-400 hover:text-white transition-colors bg-zinc-900 p-2 rounded-full border border-zinc-800 hover:border-zinc-700">
-                <Twitter className="w-5 h-5" />
+                <MessageCircle className="w-5 h-5" />
               </a>
               <a href="#" className="text-zinc-400 hover:text-white transition-colors bg-zinc-900 p-2 rounded-full border border-zinc-800 hover:border-zinc-700">
                 <Mail className="w-5 h-5" />

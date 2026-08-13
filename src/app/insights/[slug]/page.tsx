@@ -1,7 +1,7 @@
 import { INSIGHTS } from "@/lib/insights";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ChevronRight, Calendar, Clock, Share2, Linkedin, Twitter } from "lucide-react";
+import { ChevronRight, Calendar, Clock, Share2, Globe, MessageCircle } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -53,8 +53,8 @@ export default async function InsightPage({ params }: PageProps) {
               </div>
             </div>
             <div className="flex space-x-2">
-              <button className="p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 transition-colors"><Linkedin className="w-4 h-4" /></button>
-              <button className="p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 transition-colors"><Twitter className="w-4 h-4" /></button>
+              <button className="p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 transition-colors"><Globe className="w-4 h-4" /></button>
+              <button className="p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 transition-colors"><MessageCircle className="w-4 h-4" /></button>
               <button className="p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 transition-colors"><Share2 className="w-4 h-4" /></button>
             </div>
           </div>
