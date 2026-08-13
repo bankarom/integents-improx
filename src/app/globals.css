@@ -3,9 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #18181b; /* zinc-900 */
-  --primary: #059669; /* emerald-600 */
+  --primary: #4f46e5; /* indigo-600 */
   --primary-foreground: #ffffff;
-  --accent: #d97706; /* amber-600 (gold) */
+  --accent: #2e1065; /* violet-950 */
   --accent-foreground: #ffffff;
   --muted: #f4f4f5; /* zinc-100 */
   --muted-foreground: #71717a; /* zinc-500 */
@@ -33,6 +33,12 @@ body {
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/80 backdrop-blur-lg border border-white/40 shadow-xl;
+    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-2xl shadow-indigo-900/10;
+  }
+  .card-3d {
+    @apply bg-white border border-zinc-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(79,70,229,0.1)] hover:-translate-y-1 transition-all duration-300;
+  }
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-500;
   }
 }
