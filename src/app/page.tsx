@@ -1,87 +1,47 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { IBM_STYLE_CAPABILITIES } from "@/lib/data";
+import { ArrowRight } from "lucide-react";
+import { TIER_1_CAPABILITIES } from "@/lib/data";
 
 export default function Home() {
   return (
-    <div className="bg-zinc-50 pt-28 pb-20">
-      {/* Modern Split Hero Section */}
-      <section className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl shadow-xl shadow-zinc-200/50 overflow-hidden flex flex-col-reverse lg:flex-row border border-zinc-100">
-          
-          {/* Left Side: Content */}
-          <div className="w-full lg:w-1/2 p-8 lg:p-16 xl:p-20 flex flex-col justify-center">
-            <div className="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-4 py-1.5 mb-8 w-max">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-xs font-bold tracking-wide text-primary uppercase">Enterprise Consulting</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl font-bold text-zinc-900 mb-8 tracking-tight leading-[1.1]">
-              Architecting the <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">
-                Future of Business.
-              </span>
-            </h1>
-            
-            <p className="text-xl text-zinc-600 font-medium leading-relaxed mb-10 max-w-lg">
-              We partner with forward-thinking enterprises to accelerate secure AI integration, transform core operations, and unlock sustainable growth.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/services/data-and-ai/artificial-intelligence" className="bg-primary hover:bg-emerald-700 text-white px-8 py-4 rounded-full font-bold transition-all flex items-center justify-center shadow-lg shadow-primary/20 group">
-                Explore Solutions <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link href="/contact" className="bg-zinc-100 hover:bg-zinc-200 text-zinc-900 px-8 py-4 rounded-full font-bold transition-colors flex items-center justify-center">
-                Talk to an Expert
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Side: Image with modern rounded masking */}
-          <div className="w-full lg:w-1/2 h-[400px] lg:h-auto relative p-4">
-            <div className="absolute inset-4 rounded-2xl overflow-hidden shadow-inner">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 to-transparent"></div>
-            </div>
-          </div>
+    <div className="bg-white pt-[120px]">
+      {/* Tier-1 Stark Hero */}
+      <section className="px-4 sm:px-6 lg:px-8 max-w-[1800px] mx-auto min-h-[70vh] flex flex-col justify-center border-b border-black pb-20">
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-black mb-8 leading-[0.9]">
+          EMBRACE<br/>
+          CHANGE.
+        </h1>
+        <p className="text-2xl md:text-3xl text-neutral-600 font-light max-w-3xl mb-12 leading-relaxed">
+          We partner with leaders in business and society to tackle their most important challenges and capture their greatest opportunities.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-6">
+          <Link href="/services" className="sharp-btn">
+            What We Do <ArrowRight className="w-5 h-5 ml-4" />
+          </Link>
+          <Link href="/insights" className="sharp-btn-outline">
+            Latest Insights <ArrowRight className="w-5 h-5 ml-4" />
+          </Link>
         </div>
       </section>
 
-      {/* Main Tagline Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-zinc-900 mb-6 tracking-tight">
-            Orchestrate transformation at scale
-          </h2>
-          <p className="text-xl text-zinc-500 max-w-2xl mx-auto">
-            From strategic blueprinting to operational execution, our capabilities cover the entire spectrum of enterprise modernization.
-          </p>
-        </div>
+      {/* What We Do (Massive Grid) */}
+      <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-[1800px] mx-auto border-b border-black">
+        <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-black mb-24 uppercase">
+          What We Do
+        </h2>
         
-        {/* Capability Grid - Modern Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {IBM_STYLE_CAPABILITIES.map((category, idx) => (
-            <div key={category.slug} className="bg-white rounded-3xl p-10 border border-zinc-100 shadow-sm hover:shadow-xl transition-all group">
-              <div className="flex items-center justify-between mb-8 pb-6 border-b border-zinc-100">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
-                    0{idx + 1}
-                  </div>
-                  <h3 className="text-2xl font-bold text-zinc-900">{category.category}</h3>
-                </div>
-                <Link href={`/services/${category.slug}`} className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
-              
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+          {TIER_1_CAPABILITIES.map((category) => (
+            <div key={category.slug} className="border-t border-black pt-8">
+              <h3 className="text-3xl font-bold text-black mb-8">{category.category}</h3>
+              <ul className="space-y-4 mb-12">
                 {category.items.map(item => (
                   <li key={item.slug}>
-                    <Link href={`/services/${category.slug}/${item.slug}`} className="text-sm font-medium text-zinc-600 hover:text-primary transition-colors flex items-center">
-                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 mr-2 group-hover:bg-primary transition-colors"></span>
+                    <Link href={`/services/${category.slug}/${item.slug}`} className="text-lg font-medium text-neutral-600 hover:text-black hover:underline underline-offset-4 transition-all flex items-center justify-between group">
                       {item.title}
+                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   </li>
                 ))}
@@ -90,33 +50,68 @@ export default function Home() {
           ))}
         </div>
       </section>
-      
-      {/* Modern Banner CTA */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-[1600px] mx-auto pb-12">
-        <div className="bg-zinc-950 rounded-3xl overflow-hidden relative">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iMC4wNSIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTAgMHY2MGg2MCIvPjwvZz48L3N2Zz4=')]"></div>
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10 p-12 lg:p-20">
+
+      {/* Why Improx Group */}
+      <section className="bg-black text-white py-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
             <div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Let's create what's next.</h2>
-              <p className="text-xl text-zinc-400 mb-10 max-w-lg leading-relaxed">
-                Discover how our consultants can help you unlock new business value through intelligent operations and open innovation.
+              <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-12 uppercase">
+                Why Improx<br/>Group
+              </h2>
+              <p className="text-2xl text-neutral-400 font-light leading-relaxed mb-12">
+                To succeed in the future, organizations must act today. We bring deep, functional expertise, but are known for our holistic perspective: we capture value across boundaries and between the silos of any organization.
               </p>
-              <Link href="/contact" className="inline-flex bg-primary hover:bg-emerald-600 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg hover:shadow-primary/20">
-                Speak with an expert
+              <Link href="/about" className="inline-flex items-center text-white font-bold uppercase tracking-widest text-sm hover:text-neutral-400 transition-colors border-b border-white hover:border-neutral-400 pb-2">
+                About Our Firm <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </div>
-            <div className="hidden lg:block">
-              {/* Decorative elements for the right side */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="h-40 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 backdrop-blur-sm"></div>
-                <div className="h-40 rounded-2xl bg-primary/20 border border-primary/30 backdrop-blur-sm mt-8"></div>
-                <div className="h-40 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 backdrop-blur-sm"></div>
-                <div className="h-40 rounded-2xl bg-zinc-800/50 border border-zinc-700/50 backdrop-blur-sm mt-8"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+              <div className="border-t border-neutral-700 pt-8">
+                <h3 className="text-6xl font-black mb-4">98%</h3>
+                <p className="text-xl text-neutral-400">Of the Fortune 100 served</p>
+              </div>
+              <div className="border-t border-neutral-700 pt-8">
+                <h3 className="text-6xl font-black mb-4">25K+</h3>
+                <p className="text-xl text-neutral-400">Global consultants</p>
+              </div>
+              <div className="border-t border-neutral-700 pt-8">
+                <h3 className="text-6xl font-black mb-4">50+</h3>
+                <p className="text-xl text-neutral-400">Countries with active operations</p>
+              </div>
+              <div className="border-t border-neutral-700 pt-8">
+                <h3 className="text-6xl font-black mb-4">#1</h3>
+                <p className="text-xl text-neutral-400">Ranked Strategy Firm</p>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Latest Insights */}
+      <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-[1800px] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24">
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-black uppercase">
+            Latest Insights
+          </h2>
+          <Link href="/insights" className="inline-flex items-center text-black font-bold uppercase tracking-widest text-sm hover:text-neutral-500 transition-colors mt-8 md:mt-0">
+            View All Insights <ArrowRight className="w-4 h-4 ml-2" />
+          </Link>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[1, 2, 3].map((i) => (
+            <Link key={i} href={`/insights/insight-${i}`} className="group block border border-black p-8 hover:bg-black hover:text-white transition-colors duration-300">
+              <div className="text-xs font-bold uppercase tracking-widest mb-8 text-neutral-500 group-hover:text-neutral-400">Research Report</div>
+              <h3 className="text-3xl font-bold mb-6">The New Economics of Global Supply Chains</h3>
+              <p className="text-lg text-neutral-600 group-hover:text-neutral-300 mb-12 line-clamp-3">
+                How geopolitical shifts and advanced technologies are forcing executives to rethink their operational footprints entirely.
+              </p>
+              <div className="flex justify-end">
+                <ArrowRight className="w-8 h-8" />
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
     </div>

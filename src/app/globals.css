@@ -2,13 +2,13 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #18181b; /* zinc-900 */
-  --primary: #4f46e5; /* indigo-600 */
+  --foreground: #000000;
+  --primary: #000000; 
   --primary-foreground: #ffffff;
-  --accent: #2e1065; /* violet-950 */
+  --accent: #222222; 
   --accent-foreground: #ffffff;
-  --muted: #f4f4f5; /* zinc-100 */
-  --muted-foreground: #71717a; /* zinc-500 */
+  --muted: #f4f4f4; 
+  --muted-foreground: #666666; 
 }
 
 @theme inline {
@@ -31,14 +31,15 @@ body {
   @apply antialiased;
 }
 
+/* Tier 1 Consulting Strict Utilities */
 @layer utilities {
-  .glass-panel {
-    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-2xl shadow-indigo-900/10;
+  .sharp-box {
+    @apply bg-white border border-black rounded-none shadow-none;
   }
-  .card-3d {
-    @apply bg-white border border-zinc-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(79,70,229,0.1)] hover:-translate-y-1 transition-all duration-300;
+  .sharp-btn {
+    @apply bg-black text-white px-8 py-4 font-bold rounded-none hover:bg-neutral-800 transition-colors uppercase tracking-widest text-sm flex items-center;
   }
-  .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-500;
+  .sharp-btn-outline {
+    @apply bg-transparent border border-black text-black px-8 py-4 font-bold rounded-none hover:bg-black hover:text-white transition-colors uppercase tracking-widest text-sm flex items-center;
   }
 }
