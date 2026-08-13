@@ -1,40 +1,64 @@
-import { INSIGHTS } from "@/lib/insights";
+import { FEATURED_INSIGHTS } from "@/lib/data";
 import Link from "next/link";
-import { ArrowRight, FileText, Calendar, Clock } from "lucide-react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
 
 export default function InsightsHub() {
   return (
-    <div className="bg-zinc-50 min-h-screen pt-20">
-      <section className="bg-zinc-950 text-white py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-5xl font-black mb-6">Research & Insights</h1>
-          <p className="text-xl text-zinc-300 max-w-3xl mx-auto">
-            Thought leadership, market analysis, and strategic frameworks from the experts at Improx Integents.
+    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28">
+      {/* Hero Section */}
+      <section className="relative py-20 lg:py-28 border-b border-slate-800/80 overflow-hidden text-center">
+        <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
+        <div className="ambient-glow-purple top-[50px] right-[-100px]"></div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
+          <span className="badge-tag">Executive Thought Leadership</span>
+          <h1 className="text-5xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            Research, Market Benchmarks & <br />
+            <span className="gradient-text-hero">Strategic Reports</span>
+          </h1>
+          <p className="text-lg text-slate-300">
+            Proprietary research, market benchmarks, and reference architectures from senior partners at Improx Integents.
           </p>
         </div>
       </section>
 
+      {/* Insights List */}
       <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {INSIGHTS.map((insight) => (
-              <Link key={insight.slug} href={`/insights/${insight.slug}`} className="group bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl transition-all flex flex-col h-full">
-                <div className="flex items-center space-x-4 mb-6">
-                  <span className="bg-primary/10 text-primary font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
-                    {insight.category}
-                  </span>
-                  <span className="text-sm text-zinc-500 flex items-center"><Calendar className="w-4 h-4 mr-1" /> {insight.date}</span>
-                </div>
-                
-                <h2 className="text-3xl font-bold text-zinc-950 mb-4 group-hover:text-primary transition-colors">{insight.title}</h2>
-                <p className="text-zinc-600 text-lg mb-8 flex-grow">{insight.summary}</p>
-                
-                <div className="flex items-center justify-between pt-6 border-t border-zinc-100">
-                  <span className="text-sm text-zinc-500 flex items-center"><Clock className="w-4 h-4 mr-1" /> {insight.readTime}</span>
-                  <div className="flex items-center text-primary font-semibold">
-                    Read Full Insight <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {FEATURED_INSIGHTS.map((insight) => (
+              <Link 
+                key={insight.slug} 
+                href={`/insights/${insight.slug}`} 
+                className="glass-card glass-card-hover rounded-3xl overflow-hidden flex flex-col justify-between border border-slate-800 group"
+              >
+                <div>
+                  <div className="h-56 relative overflow-hidden bg-slate-900">
+                    <img 
+                      src={insight.image} 
+                      alt={insight.title} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-indigo-400 border border-slate-800">
+                      {insight.category}
+                    </div>
                   </div>
+
+                  <div className="p-8 space-y-4">
+                    <div className="text-xs text-slate-400 flex items-center space-x-3">
+                      <span className="flex items-center"><Calendar className="w-3.5 h-3.5 mr-1" /> {insight.date}</span>
+                      <span>&bull;</span>
+                      <span className="flex items-center"><Clock className="w-3.5 h-3.5 mr-1" /> {insight.readTime}</span>
+                    </div>
+
+                    <h2 className="text-xl font-bold text-white group-hover:text-indigo-300 transition-colors line-clamp-2">{insight.title}</h2>
+                    <p className="text-xs text-slate-400 leading-relaxed line-clamp-3">{insight.summary}</p>
+                  </div>
+                </div>
+
+                <div className="p-8 pt-0 text-xs font-bold text-indigo-400 flex items-center justify-between">
+                  <span>Read Full Report</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             ))}

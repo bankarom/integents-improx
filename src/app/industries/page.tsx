@@ -1,35 +1,66 @@
-import { INDUSTRIES } from "@/lib/data";
+import { GLOBAL_INDUSTRIES } from "@/lib/data";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Building2, Landmark, Activity, Factory, ShoppingBag, Zap, Radio } from "lucide-react";
 
 export default function IndustriesHub() {
+  const renderIndustryIcon = (iconName: string) => {
+    switch (iconName) {
+      case "Landmark": return <Landmark className="w-8 h-8 text-cyan-400" />;
+      case "Activity": return <Activity className="w-8 h-8 text-purple-400" />;
+      case "Factory": return <Factory className="w-8 h-8 text-indigo-400" />;
+      case "ShoppingBag": return <ShoppingBag className="w-8 h-8 text-blue-400" />;
+      case "Zap": return <Zap className="w-8 h-8 text-amber-400" />;
+      default: return <Radio className="w-8 h-8 text-emerald-400" />;
+    }
+  };
+
   return (
-    <div className="bg-zinc-50 min-h-screen pt-20">
+    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28">
       {/* Hero Section */}
-      <section className="bg-zinc-950 text-white py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-5xl font-black mb-6">Industries We Serve</h1>
-          <p className="text-xl text-zinc-300 max-w-3xl mx-auto">
-            Deep domain expertise across the world's most critical sectors. We help market leaders navigate disruption and build resilience.
+      <section className="relative py-20 lg:py-28 border-b border-slate-800/80 overflow-hidden text-center">
+        <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
+        <div className="ambient-glow-purple top-[50px] right-[-100px]"></div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
+          <span className="badge-tag">Industry Domain Expertise</span>
+          <h1 className="text-5xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            Tailored Solutions for <br />
+            <span className="gradient-text-hero">Global Market Leaders</span>
+          </h1>
+          <p className="text-lg text-slate-300">
+            Deep domain expertise across the world's most critical sectors. We help enterprise leaders navigate regulatory shifts, operational complexity, and technological disruption.
           </p>
         </div>
       </section>
 
       {/* Industries List */}
       <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {INDUSTRIES.map((ind) => (
-              <Link key={ind.slug} href={`/industries/${ind.slug}`} className="group bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl transition-all flex flex-col h-full">
-                <div className="bg-zinc-100 group-hover:bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-colors">
-                  {/* Using an abstract div instead of icon for variety in the hub */}
-                  <div className="w-8 h-8 rounded-full bg-primary/80 group-hover:bg-primary transition-colors"></div>
+            {GLOBAL_INDUSTRIES.map((ind) => (
+              <Link 
+                key={ind.slug} 
+                href={`/industries/${ind.slug}`} 
+                className="glass-card glass-card-hover rounded-3xl p-8 border border-slate-800 flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="flex items-center justify-between pb-6 border-b border-slate-800 mb-6">
+                    <div className="p-3.5 rounded-2xl bg-indigo-950/60 border border-indigo-800/40">
+                      {renderIndustryIcon(ind.iconName)}
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xl font-extrabold text-cyan-400">{ind.metric}</div>
+                      <div className="text-[10px] text-slate-400 uppercase font-semibold">{ind.metricLabel}</div>
+                    </div>
+                  </div>
+
+                  <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">{ind.name}</h2>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-8">{ind.desc}</p>
                 </div>
-                <h2 className="text-2xl font-bold text-zinc-950 mb-4 group-hover:text-primary transition-colors">{ind.title}</h2>
-                <p className="text-zinc-600 mb-8 flex-grow">{ind.description}</p>
-                <div className="inline-flex items-center text-primary font-semibold text-sm">
-                  Explore Industry Solutions <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+
+                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-bold text-cyan-400">
+                  <span>Explore Sector Frameworks</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             ))}

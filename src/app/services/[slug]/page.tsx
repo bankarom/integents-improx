@@ -1,7 +1,7 @@
-import { CAPABILITIES } from "@/lib/data";
+import { ENTERPRISE_PILLARS, FEATURED_INSIGHTS } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ChevronRight, FileText } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronRight, FileText, Sparkles } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -9,83 +9,80 @@ interface PageProps {
 
 export default async function ServicePage({ params }: PageProps) {
   const { slug } = await params;
-  const capability = CAPABILITIES.find(c => c.slug === slug);
+  const pillar = ENTERPRISE_PILLARS.find(c => c.slug === slug);
 
-  if (!capability) {
+  if (!pillar) {
     notFound();
   }
 
   return (
-    <div className="bg-white">
+    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28">
       {/* Hero Section */}
-      <section className="bg-zinc-950 text-white pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')]"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <Link href="/services" className="text-primary hover:text-emerald-400 font-semibold mb-6 inline-flex items-center text-sm uppercase tracking-wider">
-              <ChevronRight className="w-4 h-4 mr-1 rotate-180" /> Back to Capabilities
+      <section className="relative py-20 border-b border-slate-800/80 overflow-hidden">
+        <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl">
+            <Link href="/services" className="text-indigo-400 hover:text-indigo-300 font-semibold mb-6 inline-flex items-center text-xs uppercase tracking-wider">
+              <ChevronRight className="w-4 h-4 mr-1 rotate-180" /> Back to Capabilities Hub
             </Link>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">{capability.title}</h1>
-            <p className="text-xl text-zinc-300 leading-relaxed">
-              {capability.description}
+            <span className="badge-tag mb-4 block w-max">Enterprise Strategic Pillar</span>
+            <h1 className="text-5xl sm:text-6xl font-extrabold text-white tracking-tight mb-6">{pillar.category}</h1>
+            <p className="text-xl text-slate-300 font-normal leading-relaxed">
+              {pillar.tagline}
             </p>
           </div>
         </div>
       </section>
 
       {/* Main Content & Sidebar */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <section className="py-20">
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             
             {/* Main Content */}
-            <div className="lg:col-span-2">
-              <h2 className="text-3xl font-bold text-zinc-950 mb-6">Service Overview</h2>
-              <p className="text-lg text-zinc-600 mb-10 leading-relaxed">
-                In today's rapidly evolving business landscape, {capability.title.toLowerCase()} is not just an option—it is an imperative for survival and growth. Our enterprise-grade consulting approach ensures that you not only understand the theoretical benefits but realize tangible, measurable business outcomes.
-              </p>
-
-              <h3 className="text-2xl font-bold text-zinc-950 mb-6">Key Capabilities</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
-                {capability.subServices.map(sub => (
-                  <div key={sub.slug} className="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                    <CheckCircle2 className="w-8 h-8 text-primary mb-4" />
-                    <h4 className="text-xl font-bold text-zinc-900 mb-2">{sub.title}</h4>
-                    <p className="text-zinc-600 text-sm">Strategic planning and execution designed specifically for enterprise scale and security.</p>
-                  </div>
-                ))}
+            <div className="lg:col-span-2 space-y-12">
+              <div>
+                <h2 className="text-3xl font-extrabold text-white mb-4">Practice Overview</h2>
+                <p className="text-base text-slate-300 leading-relaxed">
+                  In today's hyper-competitive global landscape, mastering {pillar.category.toLowerCase()} is vital for maintaining margin advantage and operational agility. Our multidisciplinary consulting practice combines C-suite strategy with hands-on systems architecture to deliver enterprise transformation with measurable ROI.
+                </p>
               </div>
 
-              <h3 className="text-2xl font-bold text-zinc-950 mb-6">Business Impact</h3>
-              <ul className="space-y-4 mb-10">
-                <li className="flex items-start">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-0.5">
-                    <span className="h-2 w-2 rounded-full bg-primary"></span>
-                  </span>
-                  <p className="text-zinc-700 font-medium">Accelerated time-to-market for new digital initiatives.</p>
-                </li>
-                <li className="flex items-start">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-0.5">
-                    <span className="h-2 w-2 rounded-full bg-primary"></span>
-                  </span>
-                  <p className="text-zinc-700 font-medium">Significant reduction in operational costs through intelligent automation.</p>
-                </li>
-                <li className="flex items-start">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-0.5">
-                    <span className="h-2 w-2 rounded-full bg-primary"></span>
-                  </span>
-                  <p className="text-zinc-700 font-medium">Enhanced risk management and enterprise-wide compliance.</p>
-                </li>
-              </ul>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6">Sub-Service Capabilities ({pillar.items.length})</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {pillar.items.map(sub => (
+                    <Link
+                      key={sub.slug}
+                      href={`/services/${pillar.slug}/${sub.slug}`}
+                      className="glass-card glass-card-hover rounded-2xl p-6 border border-slate-800 flex flex-col justify-between group"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <CheckCircle2 className="w-6 h-6 text-indigo-400" />
+                          <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 transition-colors" />
+                        </div>
+                        <h4 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors">{sub.title}</h4>
+                        <p className="text-xs text-slate-400 leading-relaxed">{sub.shortDesc}</p>
+                      </div>
+                      <div className="pt-4 text-xs font-semibold text-indigo-400 mt-4">
+                        Deep Dive Practice Page &rarr;
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
             </div>
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-zinc-950 text-white rounded-3xl p-8 mb-8 sticky top-32 shadow-xl border border-zinc-800">
-                <h3 className="text-xl font-bold mb-4">Ready to Transform?</h3>
-                <p className="text-zinc-400 mb-6 text-sm">Speak with one of our {capability.title} experts to discuss your specific business challenges.</p>
-                <Link href="/contact" className="w-full bg-primary hover:bg-emerald-600 text-white py-3 px-4 rounded-xl font-semibold transition-colors flex items-center justify-center">
-                  Schedule a Consultation
+              <div className="glass-card rounded-2xl p-8 border border-slate-800 sticky top-32 space-y-6">
+                <div className="badge-tag">Partner Consultation</div>
+                <h3 className="text-xl font-bold text-white">Need Customized Advisory for {pillar.category}?</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">Speak directly with our Managing Partners to audit your current architecture and model business-case ROI.</p>
+                <Link href="/contact" className="btn-primary-gradient w-full py-3.5 rounded-xl font-bold text-xs flex items-center justify-center">
+                  Schedule Executive Briefing
                 </Link>
               </div>
             </div>
@@ -94,30 +91,25 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Mandatory Fallback Blogs Section */}
-      <section className="py-24 bg-zinc-50 border-t border-zinc-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Featured Insights */}
+      <section className="py-20 bg-slate-900/60 border-t border-slate-800">
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 className="text-3xl font-bold text-zinc-950 mb-4">Latest Insights on {capability.title}</h2>
-              <p className="text-zinc-600 max-w-2xl">Expert perspectives, research, and thought leadership from the Improx Integents consulting team.</p>
+              <span className="badge-tag">Thought Leadership</span>
+              <h2 className="text-3xl font-extrabold text-white tracking-tight mt-2">Latest Benchmarks & Insights</h2>
             </div>
-            <Link href="/insights" className="hidden md:inline-flex items-center text-primary font-semibold hover:text-emerald-700">
-              View All Insights <ArrowRight className="w-4 h-4 ml-2" />
+            <Link href="/insights" className="text-indigo-400 hover:text-indigo-300 font-semibold text-xs flex items-center">
+              Explore Research Hub <ArrowRight className="w-3.5 h-3.5 ml-1" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {capability.blogs.map(blog => (
-              <Link key={blog.slug} href={`/insights/${blog.slug}`} className="group bg-white border border-zinc-200 rounded-3xl p-8 hover:shadow-xl transition-all flex flex-col h-full">
-                <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-primary">
-                  <FileText className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold text-zinc-950 mb-4 group-hover:text-primary transition-colors">{blog.title}</h3>
-                <p className="text-zinc-600 text-sm mb-6 flex-grow">An in-depth analysis of current trends, challenges, and strategic solutions regarding {blog.title.toLowerCase()}.</p>
-                <span className="text-primary font-semibold text-sm flex items-center">
-                  Read Article <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {FEATURED_INSIGHTS.map((insight) => (
+              <Link key={insight.slug} href={`/insights/${insight.slug}`} className="glass-card glass-card-hover rounded-2xl p-6 border border-slate-800 block">
+                <div className="text-xs font-bold text-indigo-400 mb-2">{insight.category}</div>
+                <h3 className="text-lg font-bold text-white mb-3 line-clamp-2">{insight.title}</h3>
+                <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">{insight.summary}</p>
               </Link>
             ))}
           </div>

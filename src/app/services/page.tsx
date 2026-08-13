@@ -1,43 +1,81 @@
-import { CAPABILITIES } from "@/lib/data";
+import { ENTERPRISE_PILLARS } from "@/lib/data";
 import Link from "next/link";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Sparkles, Compass, BrainCircuit, Cpu, Layers, Building2 } from "lucide-react";
 
 export default function ServicesHub() {
+  const renderIcon = (iconName: string) => {
+    switch (iconName) {
+      case "Compass": return <Compass className="w-8 h-8 text-indigo-400" />;
+      case "BrainCircuit": return <BrainCircuit className="w-8 h-8 text-cyan-400" />;
+      case "Cpu": return <Cpu className="w-8 h-8 text-blue-400" />;
+      case "Layers": return <Layers className="w-8 h-8 text-purple-400" />;
+      default: return <Building2 className="w-8 h-8 text-emerald-400" />;
+    }
+  };
+
   return (
-    <div className="bg-zinc-50 min-h-screen pt-20">
+    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28">
       {/* Hero Section */}
-      <section className="bg-zinc-950 text-white py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-5xl font-black mb-6">Our Capabilities</h1>
-          <p className="text-xl text-zinc-300 max-w-3xl mx-auto">
-            Comprehensive business consulting and transformation services tailored for modern enterprises. We architect solutions that drive growth, efficiency, and innovation.
+      <section className="relative py-20 lg:py-28 border-b border-slate-800/80 overflow-hidden">
+        <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
+        <div className="ambient-glow-purple top-[50px] right-[-100px]"></div>
+
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-4xl">
+          <span className="badge-tag mb-4 inline-block">Enterprise Services Portfolio</span>
+          <h1 className="text-5xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            5 Strategic Pillars. <br />
+            <span className="gradient-text-hero">25 Enterprise Capabilities.</span>
+          </h1>
+          <p className="text-lg text-slate-300 mt-6 leading-relaxed">
+            From strategic boardroom blueprints to multi-agent AI execution, our consulting practices drive measurable margin expansion and sustainable market leadership.
           </p>
         </div>
       </section>
 
-      {/* Capabilities List */}
+      {/* Capabilities List Grid */}
       <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {CAPABILITIES.map((cap) => (
-              <div key={cap.slug} className="bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl transition-all group">
-                <h2 className="text-2xl font-bold text-zinc-950 mb-4">{cap.title}</h2>
-                <p className="text-zinc-600 mb-8">{cap.description}</p>
-                
-                <h3 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">Core Offerings</h3>
-                <ul className="space-y-3 mb-8">
-                  {cap.subServices.map((sub) => (
-                    <li key={sub.slug} className="flex items-center text-sm font-medium text-zinc-700">
-                      <ChevronRight className="w-4 h-4 text-primary mr-2" />
-                      {sub.title}
-                    </li>
-                  ))}
-                </ul>
+            {ENTERPRISE_PILLARS.map((pillar, idx) => (
+              <div 
+                key={pillar.slug} 
+                className="glass-card glass-card-hover rounded-3xl p-8 border border-slate-800 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between pb-6 border-b border-slate-800 mb-6">
+                    <div className="p-3 rounded-2xl bg-indigo-950/60 border border-indigo-800/40">
+                      {renderIcon(pillar.iconName)}
+                    </div>
+                    <span className="text-xs font-bold text-slate-400">Pillar 0{idx + 1}</span>
+                  </div>
 
-                <Link href={`/services/${cap.slug}`} className="inline-flex items-center text-primary font-semibold hover:text-emerald-700">
-                  Explore Full Capability <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                  <h2 className="text-2xl font-bold text-white mb-2">{pillar.category}</h2>
+                  <p className="text-xs text-slate-400 mb-6 leading-relaxed">{pillar.tagline}</p>
+                  
+                  <h3 className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-4">Practice Capabilities</h3>
+                  <div className="space-y-2.5 mb-8">
+                    {pillar.items.map((sub) => (
+                      <Link 
+                        key={sub.slug} 
+                        href={`/services/${pillar.slug}/${sub.slug}`}
+                        className="group/item flex items-center justify-between text-xs font-semibold text-slate-300 hover:text-white p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/60 hover:border-indigo-500/40 transition-all"
+                      >
+                        <span className="line-clamp-1">{sub.title}</span>
+                        <ChevronRight className="w-3.5 h-3.5 text-indigo-400 opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-800">
+                  <Link 
+                    href={`/services/${pillar.slug}`} 
+                    className="btn-primary-gradient w-full py-3 rounded-xl text-xs font-bold flex items-center justify-center"
+                  >
+                    <span>Explore Pillar Architecture</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-2" />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -45,12 +83,17 @@ export default function ServicesHub() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-primary text-white text-center">
-        <h2 className="text-4xl font-bold mb-6">Need a Custom Solution?</h2>
-        <p className="text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">Our experts can tailor a transformation roadmap specifically for your enterprise's unique challenges.</p>
-        <Link href="/contact" className="bg-white text-primary hover:bg-zinc-100 px-8 py-4 rounded-full font-bold transition-colors shadow-lg">
-          Schedule a Consultation
-        </Link>
+      <section className="py-20 bg-slate-900 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Need Tailored C-Suite Advisory?</h2>
+          <p className="text-slate-300 text-base">Our senior managing partners collaborate directly with your executive team to audit, design, and deploy bespoke capability frameworks.</p>
+          <div>
+            <Link href="/contact" className="btn-primary-gradient px-8 py-4 rounded-xl text-base font-bold inline-flex items-center">
+              <span>Schedule Executive Briefing</span>
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
+          </div>
+        </div>
       </section>
     </div>
   );

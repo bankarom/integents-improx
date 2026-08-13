@@ -1,7 +1,7 @@
-import { INSIGHTS } from "@/lib/insights";
+import { FEATURED_INSIGHTS } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ChevronRight, Calendar, Clock, Share2, Globe, MessageCircle } from "lucide-react";
+import { ChevronRight, Calendar, Clock, Share2, Globe, MessageCircle, ArrowRight } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -9,71 +9,74 @@ interface PageProps {
 
 export default async function InsightPage({ params }: PageProps) {
   const { slug } = await params;
-  const insight = INSIGHTS.find(i => i.slug === slug);
+  const insight = FEATURED_INSIGHTS.find(i => i.slug === slug);
 
   if (!insight) {
     notFound();
   }
 
   return (
-    <div className="bg-white">
+    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28">
       {/* Hero Section */}
-      <section className="bg-zinc-950 text-white pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <Link href="/insights" className="text-primary hover:text-emerald-400 font-semibold mb-8 inline-flex items-center text-sm uppercase tracking-wider justify-center w-full">
-            <ChevronRight className="w-4 h-4 mr-1 rotate-180" /> Back to Insights
+      <section className="relative py-20 border-b border-slate-800/80 overflow-hidden text-center">
+        <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
+          <Link href="/insights" className="text-indigo-400 hover:text-indigo-300 font-semibold inline-flex items-center text-xs uppercase tracking-wider mb-2">
+            <ChevronRight className="w-4 h-4 mr-1 rotate-180" /> Back to Insights Hub
           </Link>
           
-          <div className="flex items-center justify-center space-x-4 mb-6">
-            <span className="bg-white/10 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">{insight.category}</span>
-          </div>
+          <div className="badge-tag block w-max mx-auto">{insight.category}</div>
           
-          <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">{insight.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">{insight.title}</h1>
           
-          <div className="flex flex-wrap items-center justify-center gap-6 text-zinc-400 text-sm font-medium">
-            <span className="flex items-center"><Calendar className="w-4 h-4 mr-2" /> {insight.date}</span>
-            <span className="flex items-center"><Clock className="w-4 h-4 mr-2" /> {insight.readTime}</span>
+          <div className="flex items-center justify-center space-x-6 text-xs text-slate-400 font-medium pt-2">
+            <span className="flex items-center"><Calendar className="w-3.5 h-3.5 mr-1" /> {insight.date}</span>
+            <span>&bull;</span>
+            <span className="flex items-center"><Clock className="w-3.5 h-3.5 mr-1" /> {insight.readTime}</span>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Main Article Content */}
       <section className="py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
-          <div className="flex items-center justify-between py-6 border-b border-zinc-200 mb-12">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-zinc-200 rounded-full flex items-center justify-center text-zinc-500 font-bold">
-                II
-              </div>
-              <div>
-                <p className="font-bold text-zinc-900">Improx Integents Research</p>
-                <p className="text-sm text-zinc-500">Enterprise Strategy Team</p>
-              </div>
+          <div className="flex items-center justify-between py-4 border-b border-slate-800">
+            <div>
+              <p className="font-bold text-white text-sm">{insight.author}</p>
+              <p className="text-xs text-slate-400">Improx Integents Research Practice</p>
             </div>
             <div className="flex space-x-2">
-              <button className="p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 transition-colors"><Globe className="w-4 h-4" /></button>
-              <button className="p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 transition-colors"><MessageCircle className="w-4 h-4" /></button>
-              <button className="p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 transition-colors"><Share2 className="w-4 h-4" /></button>
+              <button className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 transition-colors"><Globe className="w-4 h-4" /></button>
+              <button className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 transition-colors"><MessageCircle className="w-4 h-4" /></button>
+              <button className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 transition-colors"><Share2 className="w-4 h-4" /></button>
             </div>
           </div>
 
-          <article className="prose prose-zinc prose-lg max-w-none mb-16">
-            <p className="text-2xl font-light leading-relaxed text-zinc-600 mb-10 border-l-4 border-primary pl-6">
+          <div className="glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 space-y-6">
+            <p className="text-xl font-normal leading-relaxed text-indigo-200 border-l-4 border-indigo-500 pl-6 py-2">
               {insight.summary}
             </p>
-            <p className="text-zinc-800 leading-loose">
-              {insight.content}
-            </p>
-          </article>
+            
+            <div className="text-slate-300 text-base leading-relaxed space-y-4 pt-4 border-t border-slate-800">
+              <p>
+                In today's volatile macroeconomic environment, enterprise leaders face an operational mandate: transform legacy processes or risk margin compression. As artificial intelligence evolves from passive task assistance into multi-agent operational control planes, forward-thinking organizations are fundamentally restructuring their execution models.
+              </p>
+              <p>
+                Through empirical research across Global 2000 deployments, Improx Integents has codified the reference architecture for secure agentic systems, real-time data governance, and high-velocity capital deployment.
+              </p>
+            </div>
+          </div>
 
-          <div className="bg-zinc-50 rounded-3xl p-10 border border-zinc-200 text-center">
-            <h3 className="text-2xl font-bold text-zinc-900 mb-4">Discuss this Research</h3>
-            <p className="text-zinc-600 mb-8 max-w-md mx-auto">Want to understand how these trends apply specifically to your organization? Schedule a strategic briefing with our authors.</p>
-            <Link href="/contact" className="inline-block bg-primary hover:bg-emerald-700 text-white px-8 py-3 rounded-full font-bold transition-colors">
-              Request Strategic Briefing
-            </Link>
+          <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-10 border border-slate-800 text-center space-y-4">
+            <h3 className="text-2xl font-bold text-white">Discuss this Benchmark Research</h3>
+            <p className="text-slate-300 text-sm max-w-lg mx-auto">Want to evaluate how these research findings apply directly to your organization's operating model?</p>
+            <div className="pt-2">
+              <Link href="/contact" className="btn-primary-gradient px-8 py-3.5 rounded-xl font-bold text-xs inline-flex items-center">
+                <span>Request Executive Briefing</span>
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </div>
           </div>
           
         </div>

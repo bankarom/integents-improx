@@ -1,41 +1,70 @@
-import { CASE_STUDIES } from "@/lib/data";
+import { FEATURED_CASE_STUDIES } from "@/lib/data";
 import Link from "next/link";
-import { ArrowRight, Briefcase } from "lucide-react";
+import { ArrowRight, Briefcase, ChevronRight, TrendingUp } from "lucide-react";
 
 export default function CaseStudiesHub() {
   return (
-    <div className="bg-zinc-50 min-h-screen pt-20">
-      <section className="bg-zinc-950 text-white py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-5xl font-black mb-6">Client Success Stories</h1>
-          <p className="text-xl text-zinc-300 max-w-3xl mx-auto">
-            Discover how we have partnered with leading enterprises to drive measurable business impact and transform operations.
+    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28">
+      {/* Hero Section */}
+      <section className="relative py-20 lg:py-28 border-b border-slate-800/80 overflow-hidden text-center">
+        <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
+        <div className="ambient-glow-purple top-[50px] right-[-100px]"></div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
+          <span className="badge-tag">Quantified Business Impact</span>
+          <h1 className="text-5xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            Enterprise Client <br />
+            <span className="gradient-text-hero">Transformation Case Studies</span>
+          </h1>
+          <p className="text-lg text-slate-300">
+            Real-world proof of how Improx Integents partners with global market leaders to engineer high-margin growth, deploy agentic AI control planes, and optimize supply networks.
           </p>
         </div>
       </section>
 
+      {/* Case Studies List */}
       <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {CASE_STUDIES.map((study) => (
-              <Link key={study.slug} href={`/case-studies/${study.slug}`} className="group bg-white rounded-3xl overflow-hidden border border-zinc-200 shadow-sm hover:shadow-xl transition-all flex flex-col">
-                <div className="p-8 pb-0">
-                  <div className="inline-block bg-primary/10 text-primary font-semibold text-xs px-3 py-1 rounded-full mb-6 uppercase tracking-wider">
-                    {study.industry}
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {FEATURED_CASE_STUDIES.map((study) => (
+              <div key={study.slug} className="glass-card glass-card-hover rounded-3xl overflow-hidden flex flex-col justify-between border border-slate-800">
+                <div>
+                  <div className="h-56 relative overflow-hidden bg-slate-900">
+                    <img 
+                      src={study.image} 
+                      alt={study.title} 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-indigo-400 border border-slate-800">
+                      {study.industry}
+                    </div>
                   </div>
-                  <h2 className="text-3xl font-bold text-zinc-950 mb-4 group-hover:text-primary transition-colors">{study.title}</h2>
-                  <p className="text-zinc-600 text-lg mb-8">{study.summary}</p>
+
+                  <div className="p-8 space-y-4">
+                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">{study.client}</div>
+                    <h2 className="text-2xl font-bold text-white leading-snug">{study.title}</h2>
+                    
+                    <div className="bg-indigo-950/50 border border-indigo-800/40 p-3.5 rounded-xl text-xs font-semibold text-indigo-300">
+                      <div className="flex items-center space-x-1">
+                        <TrendingUp className="w-4 h-4 text-emerald-400 mr-1" />
+                        <span>{study.impact}</span>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-400 leading-relaxed">{study.summary}</p>
+                  </div>
                 </div>
-                <div className="mt-auto bg-zinc-50 p-8 border-t border-zinc-100 flex items-center justify-between">
-                  <div className="flex items-center text-sm font-medium text-zinc-500">
-                    <Briefcase className="w-4 h-4 mr-2" /> {study.client}
-                  </div>
-                  <div className="flex items-center text-primary font-semibold">
-                    Read Study <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </div>
+
+                <div className="p-8 pt-0">
+                  <Link 
+                    href={`/case-studies/${study.slug}`} 
+                    className="btn-primary-gradient w-full py-3.5 rounded-xl font-bold text-xs flex items-center justify-center"
+                  >
+                    <span>Read Executive Case Study</span>
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
