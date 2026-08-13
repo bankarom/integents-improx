@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #18181b; /* zinc-900 */
-  --primary: #047857; /* emerald-700 */
+  --primary: #059669; /* emerald-600 */
   --primary-foreground: #ffffff;
   --accent: #d97706; /* amber-600 (gold) */
   --accent-foreground: #ffffff;
@@ -28,10 +28,11 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  @apply antialiased;
 }
 
 @layer utilities {
-  .glass-header {
-    @apply bg-white/90 backdrop-blur-md border-b border-zinc-200;
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-lg border border-white/40 shadow-xl;
   }
 }
